@@ -7,6 +7,7 @@ package principal;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
+import programacion.Programacion;
 
 /**
  *
@@ -14,13 +15,13 @@ import javax.swing.JOptionPane;
  */
 public class Principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Principal
-     */
+    Programacion ver;
+
     public Principal() {
         initComponents();
         configurarRB1();
         configurarRB2();
+        ver = new Programacion();
     }
 
     public void configurarRB1() {
@@ -33,6 +34,7 @@ public class Principal extends javax.swing.JFrame {
 
         rb_1.setSelected(true);
     }
+
     public void configurarRB2() {
 
         ButtonGroup group = new ButtonGroup();
@@ -41,10 +43,11 @@ public class Principal extends javax.swing.JFrame {
         group.add(rbMultiplicar);
         group.add(rbDividir);
         group.add(rbPotencia);
-        
+
         rbSumar.setSelected(true);
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -220,14 +223,14 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "RB1");
         }
         if (rb_2.isSelected()) {
-            JOptionPane.showInputDialog(null,"RB2");
+            JOptionPane.showInputDialog(null, "RB2");
         }
         if (rb_3.isSelected()) {
             JOptionPane.showConfirmDialog(null, "RB3");
         }
         if (rb_4.isSelected()) {
-            String[] rb = {"opcion 1 ","opcion 2","opcion 3"};
-            
+            String[] rb = {"opcion 1 ", "opcion 2", "opcion 3"};
+
             JOptionPane.showOptionDialog(null, "RB4", "Titulo", 0, 0, null, rb, 0);
         }
 
@@ -239,10 +242,41 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_rbSumarActionPerformed
 
     private void btnOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperacionActionPerformed
-       
-        
-        
-        
+        try {
+            int num1 = Integer.parseInt(txtNum1.getText());
+            int num2 = Integer.parseInt(txtNum2.getText());
+            if (rbSumar.isSelected()) {
+
+                txtResultado.setText(String.valueOf(ver.suma(num1, num2)));
+
+            }
+            if (rbRestar.isSelected()) {
+
+                txtResultado.setText(String.valueOf(ver.restar(num1, num2)));
+
+            }
+            if (rbMultiplicar.isSelected()) {
+
+                txtResultado.setText(String.valueOf(ver.restar(num1, num2)));
+            }
+            if (rbDividir.isSelected()) {
+
+                txtResultado.setText(String.valueOf(ver.dividir(num1, num2)));
+
+            }
+            if (rbPotencia.isSelected()) {
+
+                txtResultado.setText(String.valueOf(ver.potencia(num1, num2)));
+                
+                
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error ", "", 0);
+        } catch (ArithmeticException e) {
+            JOptionPane.showMessageDialog(null, "Error", "", 0);
+        }
+
+
     }//GEN-LAST:event_btnOperacionActionPerformed
 
     /**
